@@ -10,7 +10,7 @@ var qiniu = require('./routes/qiniu');
 var list = require('./routes/list');
 var ocr = require('./routes/ocr');
 var camcard = require('./routes/camcard');
-var passports = require('./routes/passport');
+var authentication = require('./routes/authentication');
 var failure = require('./routes/failure');
 var success = require('./routes/success');
 
@@ -49,7 +49,7 @@ app.use('/list', list);
 app.use('/qiniu', qiniu);
 app.use('/ocr', ocr);
 app.use('/camcard', camcard);
-app.use('/passport', passports);
+app.use('/authentication', authentication);
 app.use('/failure', failure);
 app.use('/success', success);
 
