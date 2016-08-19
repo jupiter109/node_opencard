@@ -13,23 +13,24 @@ var camcard = require('./routes/camcard');
 var authentication = require('./routes/authentication');
 var failure = require('./routes/failure');
 var success = require('./routes/success');
+var expressSession = require('express-session')({
+    secret: 'keyboard cat',
+    resave: true,
+    saveUninitialized: true,
+    cookic: {secret: true}
+});
 
 //mongoDB config
 var mongoose = require('./lib/mongoose');
 var dao = require('./lib/dao')(mongoose);
 global.dao = dao;
+var User = dao.User;
 
-//passport config
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-passport.use(new LocalStrategy(dao.User.authenticate()));
-passport.serializeUser(dao.User.serializeUser());
-passport.deserializeUser(dao.User.deserializeUser());
+//passportLocal
+var passport = require('./lib/passportLocal');
 
 //app
 var app = express();
-app.use(passport.initialize());
-app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -42,6 +43,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(expressSession);
+app.use(passport.initialize());
+app.use(passport.session());
 
 //routes
 app.use('/', routes);

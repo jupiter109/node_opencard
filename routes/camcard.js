@@ -6,8 +6,7 @@ var express = require('express');
 var router = express.Router();
 
 var needle = require('needle');
-var fs = require('fs');
-var debug = require('debug')('aaa')
+//var fs = require('fs');
 var asycn = require('async');
 var path = require('path');
 var os = require('os');

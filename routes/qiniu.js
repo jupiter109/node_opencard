@@ -5,6 +5,7 @@ var express = require('express');
 var router = express.Router();
 
 var qiniu = require('qiniu');
+var passport = require('passport');
 
 qiniu.conf.ACCESS_KEY = 'ukoBmyYilY6szsAwM6ooe21Fa2w_XwFehpqITf1b';
 qiniu.conf.SECRET_KEY = '2W4d4tqWhVyo4axbga01EZhxZRiXCWl9x3NO_oYV';
